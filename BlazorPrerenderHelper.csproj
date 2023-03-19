@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>BlazorPrerenderHelper</Title>
+        <Authors>Brian Choi &lt;brian9206@hotmail.com&gt;</Authors>
+        <Description>A library to eliminate double data retrieval problem of Blazor WASM prerendered application.</Description>
+        <PackageProjectUrl>https://github.com/brian9206/BlazorPrerenderHelper</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/brian9206/BlazorPrerenderHelper</RepositoryUrl>
+        <PackageTags>blazor,wasm,ssr,prerender</PackageTags>
+        <Company />
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <SupportedPlatform Include="browser" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.1" />
+    </ItemGroup>
+
+</Project>
