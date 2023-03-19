@@ -3,7 +3,6 @@ window.ssrInterop = {
     return typeof (ssrHint) !== 'undefined' ? 1 : 0
   },
   getHint(key) {
-    console.log('key', key)
     if (typeof (ssrHint) === 'undefined' || !Object.keys(ssrHint).includes(key)) {
       return {isFound: false}
     } else {
