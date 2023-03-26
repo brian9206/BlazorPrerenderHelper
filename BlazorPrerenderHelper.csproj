@@ -12,7 +12,7 @@
         <RepositoryUrl>https://github.com/brian9206/BlazorPrerenderHelper</RepositoryUrl>
         <PackageTags>blazor,wasm,ssr,prerender</PackageTags>
         <Company />
-        <Version>1.0.1</Version>
+        <Version>1.1.0</Version>
     </PropertyGroup>
 
 

@@ -19,9 +19,10 @@ public interface ISSRService
     /// Get hint from prerender context
     /// </summary>
     /// <param name="key"></param>
+    /// <param name="preserve">Set true if you want to preserve the hint. By default, the hint will be removed in memory after first call</param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    Task<HintResult<T>> GetHint<T>(string key) where T : class;
+    Task<HintResult<T>> GetHint<T>(string key, bool preserve = false) where T : class;
 
     /// <summary>
     /// Get all hints

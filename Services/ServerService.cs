@@ -15,16 +15,21 @@ internal class ServerService : ISSRService, IPrerenderScriptGenerator
         return Task.FromResult(true);
     }
 
-    public Task<HintResult<T>> GetHint<T>(string key) where T : class
+    public Task<HintResult<T>> GetHint<T>(string key, bool preserve) where T : class
     {
         if (_hints.ContainsKey(key))
             return Task.FromResult(new HintResult<T>());
 
-        return Task.FromResult(new HintResult<T>()
+        var result = new HintResult<T>()
         {
             IsFound = true,
             Result = (T?)_hints[key]
-        });
+        };
+
+        if (!preserve)
+            _hints.Remove(key);
+
+        return Task.FromResult(result);
     }
 
     public Task<IReadOnlyDictionary<string, object>> GetAllHints()

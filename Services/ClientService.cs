@@ -1,4 +1,3 @@
-using System.Text.Json;
 using BlazorPrerenderHelper.Models;
 using Microsoft.JSInterop;
 
@@ -20,9 +19,9 @@ internal class ClientService : ISSRService
         return await _jsRuntime.InvokeAsync<int>("ssrInterop.isSSR") == 1;
     }
 
-    public async Task<HintResult<T>> GetHint<T>(string key) where T : class
+    public async Task<HintResult<T>> GetHint<T>(string key, bool preserve) where T : class
     {
-        return await _jsRuntime.InvokeAsync<HintResult<T>>("ssrInterop.getHint", key);
+        return await _jsRuntime.InvokeAsync<HintResult<T>>("ssrInterop.getHint", key, preserve);
     }
 
     public async Task<IReadOnlyDictionary<string, object>> GetAllHints()
