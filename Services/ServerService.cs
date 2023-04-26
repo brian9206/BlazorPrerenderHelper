@@ -1,13 +1,19 @@
 ﻿using System.Text.Json;
-using System.Text.Json.Serialization;
 using BlazorPrerenderHelper.Models;
+using MessagePack;
 
 namespace BlazorPrerenderHelper.Services;
 
 internal class ServerService : ISSRService, IPrerenderScriptGenerator
 {
+    private readonly PrerenderHelperOptions _options;
     private readonly Dictionary<string, object> _hints = new();
-    
+
+    public ServerService(PrerenderHelperOptions options)
+    {
+        _options = options;
+    }
+
     public bool IsServer => true;
     
     public Task<bool> IsSSR()
@@ -44,11 +50,8 @@ internal class ServerService : ISSRService, IPrerenderScriptGenerator
 
     public string Generate()
     {
-        var json = JsonSerializer.Serialize(_hints, new JsonSerializerOptions()
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-        });
-
+        var data = _hints.ToDictionary(kv => kv.Key, kv => Convert.ToBase64String(MessagePackSerializer.Serialize(kv.Value, _options.MessagePackSerializerOptions)));
+        var json = JsonSerializer.Serialize(data);
         return "<script>var ssrHint=" + json + "</script>";
     }
 }
