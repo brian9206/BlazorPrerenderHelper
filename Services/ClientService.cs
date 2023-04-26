@@ -24,7 +24,7 @@ internal class ClientService : ISSRService
 
     public async Task<HintResult<T>> GetHint<T>(string key, bool preserve) where T : class
     {
-        var result = await _jsRuntime.InvokeAsync<MessagePackHintResult>("ssrInterop.get", key, preserve);
+        var result = await _jsRuntime.InvokeAsync<MessagePackHintResult>("ssrInterop.getHint", key, preserve);
 
         if (result.IsFound)
         {
